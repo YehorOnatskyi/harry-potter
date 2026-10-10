@@ -15,11 +15,18 @@
 }
 
 .card__photo {
-  aspect-ratio: 3 / 4;
+  /* В макете карточка ~297x464, фото ~297x279 — это 15:14, а не 3:4. */
+  position: relative;
+  aspect-ratio: 15 / 14;
   background: #171717 url("/placeholder.svg") center / 44% no-repeat;
 }
 
+/* Картинка вынута из потока. Иначе height:100% у ребёнка и авто-высота у родителя
+   дают циклическую зависимость, браузер её разрывает натуральной пропорцией файла,
+   и aspect-ratio родителя просто игнорируется. */
 .card__image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -27,7 +34,7 @@
 
 .card__body {
   flex: 1;
-  padding: 14px 16px 8px;
+  padding: 18px 16px 14px;
 }
 
 .card__name {

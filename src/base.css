@@ -7,7 +7,11 @@
   --text: #f2f2f2;
   --text-dim: #a8a8a8;
 
-  --container: 1240px;
+  /* Замеры с макета (кадр 1500px): контент 1250, поля по 125, шаг сетки 20. */
+  /* 1250 контента + по 24 поля: box-sizing border-box считает padding внутрь. */
+  --container: 1298px;
+  --gap: 20px;
+  --section-y: 88px;
   --radius: 10px;
 }
 
@@ -45,7 +49,7 @@ img {
   width: 100%;
   max-width: var(--container);
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 24px;
 }
 
 /* Кнопки и ссылки-кнопки выглядят одинаково: в макете это одна и та же золотая пилюля. */

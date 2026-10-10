@@ -1,5 +1,7 @@
 .view {
-  padding: 32px 20px 80px;
+  /* В макете: от верха кадра до заголовка ~100, от заголовка до сетки ~88,
+     от сетки до низа ~88. Раньше тут было 32/28/80 — отсюда и теснота. */
+  padding: 100px 24px var(--section-y);
 }
 
 .list__back {
@@ -15,8 +17,8 @@
 }
 
 .list__title {
-  margin: 0 0 28px;
-  font-size: clamp(26px, 3.2vw, 44px);
+  margin: 0 0 var(--section-y);
+  font-size: clamp(26px, 3vw, 45px);
   text-align: center;
 }
 
@@ -45,7 +47,7 @@
 .list__grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  gap: var(--gap);
   margin: 0;
   padding: 0;
   list-style: none;

@@ -5,8 +5,9 @@
   gap: 8px;
   width: fit-content;
   max-width: 100%;
-  margin: 0 auto 28px;
-  padding: 6px;
+  /* В макете: от заголовка до вкладок ~84, от вкладок до сетки ~38, высота ~68. */
+  margin: 0 auto 38px;
+  padding: 10px;
   border: 1px solid var(--panel-border);
   border-radius: 999px;
   background: var(--panel);
@@ -42,8 +43,8 @@
 }
 
 .houseTabs__crest {
-  width: 16px;
-  height: 19px;
+  width: 18px;
+  height: auto;
   flex-shrink: 0;
 }
 

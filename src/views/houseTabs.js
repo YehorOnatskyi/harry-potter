@@ -9,31 +9,15 @@ const LABELS = {
   hufflepuff: "Hufflepuff",
 };
 
-// Цвета факультетов. Герб пока рисуем щитом: настоящие картинки из макета
-// подставим в public/img, когда появится экспорт.
-const COLORS = {
-  gryffindor: "#7f0909",
-  slytherin: "#0d6217",
-  ravenclaw: "#000a90",
-  hufflepuff: "#eee117",
-};
-
-const SVG_NS = "http://www.w3.org/2000/svg";
-
+// Гербы — настоящие картинки из макета, вытащены из CDN Figma.
 function createCrest(house) {
-  const svg = document.createElementNS(SVG_NS, "svg");
-  svg.setAttribute("class", "houseTabs__crest");
-  svg.setAttribute("viewBox", "0 0 24 28");
-  svg.setAttribute("aria-hidden", "true");
-
-  const shield = document.createElementNS(SVG_NS, "path");
-  shield.setAttribute("d", "M12 1 23 5v10c0 6-5 10-11 12C6 25 1 21 1 15V5Z");
-  shield.setAttribute("fill", COLORS[house]);
-  shield.setAttribute("stroke", "#d3a625");
-  shield.setAttribute("stroke-width", "1.5");
-
-  svg.append(shield);
-  return svg;
+  const crest = document.createElement("img");
+  crest.className = "houseTabs__crest";
+  crest.src = `/img/crest-${house}.png`;
+  crest.alt = ""; // декоративная: название факультета рядом текстом
+  crest.width = 96;
+  crest.height = 106;
+  return crest;
 }
 
 export function createHouseTabs(activeHouse) {

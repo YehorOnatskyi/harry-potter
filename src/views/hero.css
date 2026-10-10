@@ -3,27 +3,32 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 560px;
+  /* В макете первый экран — кадр 1500x788, то есть высота ~52% ширины. */
+  min-height: clamp(520px, 52vw, 788px);
   padding: 80px 0;
   text-align: center;
   overflow: hidden;
 }
 
-/* Заглушка вместо фона из макета. Когда появится public/img/hero.jpg —
-   достаточно раскомментировать background-image, разметку менять не надо. */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse at 50% 120%, rgba(232, 180, 74, 0.28), transparent 60%),
-    radial-gradient(ellipse at 50% 0%, rgba(90, 70, 30, 0.35), transparent 70%),
-    linear-gradient(180deg, #1a1508 0%, #120f06 55%, var(--bg) 100%);
-  /* background-image: url("/img/hero.jpg"); background-size: cover; background-position: center; */
+  background: #0d0b06 url("/img/hero.jpg") center / cover no-repeat;
+}
+
+/* Затемнение поверх фотографии: без него золотой текст на светлой части замка
+   читается плохо. */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10, 8, 4, 0.55) 0%, rgba(10, 8, 4, 0.35) 45%, var(--bg) 100%);
 }
 
 .hero__inner {
   position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -34,17 +39,18 @@
   max-width: 14em;
   font-size: clamp(30px, 4.2vw, 56px);
   line-height: 1.25;
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.8);
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.85);
 }
 
 .categories {
-  padding: 0 0 80px;
+  /* Тот же вертикальный ритм, что и у списков. */
+  padding: var(--section-y) 24px;
 }
 
 .categories__list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  gap: var(--gap);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -59,31 +65,31 @@
 
 .category__image {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   border: 1px solid var(--panel-border);
   border-radius: var(--radius);
   background: var(--panel) center / cover no-repeat;
 }
 
 .category__image--students {
-  background-image: linear-gradient(145deg, #2a2316, #16130c);
+  background-image: url("/img/cat-students.jpg");
 }
 
 .category__image--staff {
-  background-image: linear-gradient(145deg, #1e2416, #12150c);
+  background-image: url("/img/cat-staff.jpg");
 }
 
 .category__image--houses {
-  background-image: linear-gradient(145deg, #241a16, #15100c);
+  background-image: url("/img/cat-houses.jpg");
 }
 
 @media (max-width: 860px) {
   .categories__list {
     grid-template-columns: 1fr;
-    gap: 24px;
   }
 
   .hero {
     min-height: 420px;
+    padding: 56px 0;
   }
 }
