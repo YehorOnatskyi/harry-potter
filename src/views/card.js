@@ -10,6 +10,20 @@ function addLine(parent, className, text) {
   parent.append(p);
 }
 
+// API отдаёт картинки очень разного размера: от 163x227 у Гаррі до 960x1280
+// у Артура Візлі, а слот в карточке 298px — на retina нужно около 600.
+// Просим CDN отдать ровно эту ширину с резкостью: крупные уменьшатся и не будут
+// тянуть лишние сотни килобайт, мелкие станут чище на вид.
+// Детали это не добавит — у мелких мастер и правда маленький, лучше его нет.
+// CDN сам отдаёт WebP браузерам, которые его принимают: ~55КБ вместо ~100КБ JPEG.
+function imageUrl(src) {
+  if (!src.includes("ik.imagekit.io")) {
+    return src; // чужой хост — параметры трогать нельзя
+  }
+  const separator = src.includes("?") ? "&" : "?";
+  return `${src}${separator}tr=w-600,q-75,e-sharpen-1`;
+}
+
 export function createCard(character) {
   const item = document.createElement("li");
   item.className = "card";
@@ -24,7 +38,7 @@ export function createCard(character) {
   if (character.image) {
     const image = document.createElement("img");
     image.className = "card__image";
-    image.src = character.image;
+    image.src = imageUrl(character.image);
     image.alt = character.name;
     image.loading = "lazy";
     image.decoding = "async";
