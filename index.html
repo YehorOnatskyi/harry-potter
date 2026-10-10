@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <title>Світ Гаррі Поттера</title>
+  </head>
+  <body>
+    <header class="hero" id="hero">
+      <div class="hero__inner container">
+        <h1 class="hero__title">Ласкаво просимо у світ Гаррі Поттера</h1>
+        <button class="button button--solid" id="showCategories" type="button">
+          Показати всіх персонажів
+        </button>
+      </div>
+    </header>
+
+    <section class="categories container" id="categories" hidden>
+      <ul class="categories__list">
+        <li class="category">
+          <div class="category__image category__image--students"></div>
+          <a class="button" href="#/students">Студенти Гоґвортсу</a>
+        </li>
+        <li class="category">
+          <div class="category__image category__image--staff"></div>
+          <a class="button" href="#/staff">Співробітники Гоґвортсу</a>
+        </li>
+        <li class="category">
+          <div class="category__image category__image--houses"></div>
+          <a class="button" href="#/house/gryffindor">Персонажі в певному будинку</a>
+        </li>
+      </ul>
+    </section>
+
+    <main class="view container" id="view" hidden></main>
+
+    <div class="details" id="details" hidden></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

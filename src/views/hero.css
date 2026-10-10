@@ -1,0 +1,89 @@
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 560px;
+  padding: 80px 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Заглушка вместо фона из макета. Когда появится public/img/hero.jpg —
+   достаточно раскомментировать background-image, разметку менять не надо. */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 120%, rgba(232, 180, 74, 0.28), transparent 60%),
+    radial-gradient(ellipse at 50% 0%, rgba(90, 70, 30, 0.35), transparent 70%),
+    linear-gradient(180deg, #1a1508 0%, #120f06 55%, var(--bg) 100%);
+  /* background-image: url("/img/hero.jpg"); background-size: cover; background-position: center; */
+}
+
+.hero__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+}
+
+.hero__title {
+  max-width: 14em;
+  font-size: clamp(30px, 4.2vw, 56px);
+  line-height: 1.25;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.8);
+}
+
+.categories {
+  padding: 0 0 80px;
+}
+
+.categories__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.category__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  background: var(--panel) center / cover no-repeat;
+}
+
+.category__image--students {
+  background-image: linear-gradient(145deg, #2a2316, #16130c);
+}
+
+.category__image--staff {
+  background-image: linear-gradient(145deg, #1e2416, #12150c);
+}
+
+.category__image--houses {
+  background-image: linear-gradient(145deg, #241a16, #15100c);
+}
+
+@media (max-width: 860px) {
+  .categories__list {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hero {
+    min-height: 420px;
+  }
+}

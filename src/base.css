@@ -1,0 +1,99 @@
+:root {
+  --bg: #121212;
+  --panel: #1c1c1c;
+  --panel-border: #2e2e2e;
+  --gold: #e8b44a;
+  --gold-bright: #ffc956;
+  --text: #f2f2f2;
+  --text-dim: #a8a8a8;
+
+  --container: 1240px;
+  --radius: 10px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: "Cinzel", Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Кнопки и ссылки-кнопки выглядят одинаково: в макете это одна и та же золотая пилюля. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 28px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--gold);
+  font: inherit;
+  font-size: 15px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.2s;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: var(--gold);
+  color: #1a1407;
+}
+
+.button--solid {
+  background: var(--gold);
+  color: #1a1407;
+}
+
+.button--solid:hover,
+.button--solid:focus-visible {
+  background: var(--gold-bright);
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold-bright);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
