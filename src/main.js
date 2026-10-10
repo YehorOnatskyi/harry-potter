@@ -2,6 +2,7 @@ import "./base.css";
 import "./views/hero.css";
 import { getStudents, getStaff, getHouse, HOUSES } from "./api/characters.js";
 import { showList } from "./views/list.js";
+import { createHouseTabs } from "./views/houseTabs.js";
 
 const hero = document.getElementById("hero");
 const categories = document.getElementById("categories");
@@ -46,6 +47,7 @@ function route() {
     showList({
       title: "Персонажі в певному будинку",
       loader: () => getHouse(parts[1]),
+      tabs: createHouseTabs(parts[1]),
     });
     return;
   }

@@ -1,5 +1,6 @@
 import "./list.css";
 import { createCard } from "./card.js";
+import { bindDetails } from "./details.js";
 
 const view = document.getElementById("view");
 
@@ -66,6 +67,7 @@ function renderCards(body, items) {
   const grid = document.createElement("ul");
   grid.className = "list__grid";
   grid.append(...items.map(createCard));
+  bindDetails(grid, items);
   body.replaceChildren(grid);
 }
 

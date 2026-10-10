@@ -1,0 +1,64 @@
+.details {
+  position: fixed;
+  z-index: 20;
+  width: 295px;
+  max-height: calc(100vh - 24px);
+  padding: 16px 18px;
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  background: #0f0f0f;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+  overflow-y: auto;
+  /* Пока панель просто следует за курсором, она не должна перехватывать мышь:
+     иначе наведение на саму панель считалось бы уходом с карточки. */
+  pointer-events: none;
+  animation: details-in 0.15s ease-out;
+}
+
+.details--pinned {
+  pointer-events: auto;
+  border-color: var(--gold);
+}
+
+.details__list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 6px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.details__label {
+  margin: 0;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.details__value {
+  margin: 0;
+  color: var(--gold);
+  overflow-wrap: anywhere;
+}
+
+@keyframes details-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* На тач-экранах наведения нет: панель открывается кнопкой и показывается
+   по центру, а не рядом с карточкой. */
+@media (hover: none) {
+  .details {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+    width: min(320px, calc(100vw - 32px));
+  }
+}
