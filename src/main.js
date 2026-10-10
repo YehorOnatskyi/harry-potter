@@ -1,5 +1,7 @@
 import "./base.css";
 import "./views/hero.css";
+import { getStudents, getStaff, getHouse, HOUSES } from "./api/characters.js";
+import { showList } from "./views/list.js";
 
 const hero = document.getElementById("hero");
 const categories = document.getElementById("categories");
@@ -30,8 +32,26 @@ function route() {
     return;
   }
 
-  // Временная заглушка: на следующем шаге сюда придёт список персонажей.
-  view.textContent = parts.join(" / ");
+  if (parts[0] === "students") {
+    showList({ title: "Студенти Гоґвортсу", loader: getStudents });
+    return;
+  }
+
+  if (parts[0] === "staff") {
+    showList({ title: "Співробітники Гоґвортсу", loader: getStaff });
+    return;
+  }
+
+  if (parts[0] === "house" && HOUSES.includes(parts[1])) {
+    showList({
+      title: "Персонажі в певному будинку",
+      loader: () => getHouse(parts[1]),
+    });
+    return;
+  }
+
+  // Неизвестный адрес — возвращаем на главную, отдельный экран 404 тут не нужен.
+  location.hash = "";
 }
 
 window.addEventListener("hashchange", route);
