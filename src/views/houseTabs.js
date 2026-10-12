@@ -13,7 +13,10 @@ const LABELS = {
 function createCrest(house) {
   const crest = document.createElement("img");
   crest.className = "houseTabs__crest";
-  crest.src = `/img/crest-${house}.png`;
+  // BASE_URL обязателен: этот путь собирается во время работы, и Vite его
+  // не переписывает, в отличие от путей в CSS и в index.html. Локально тут "/",
+  // а на GitHub Pages — "/harry-potter/", и без него гербы ушли бы в корень домена.
+  crest.src = `${import.meta.env.BASE_URL}img/crest-${house}.png`;
   crest.alt = ""; // декоративная: название факультета рядом текстом
   crest.width = 96;
   crest.height = 106;
